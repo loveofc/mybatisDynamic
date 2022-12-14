@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="memberDAO">
+  
+  <resultMap id="memResult" type="memberVo">
+  	<result property="id" column="id"/>
+  	<result property="password" column="password"/>
+  	<result property="name" column="name"/>
+  	<result property="email" column="email"/>
+  	<result property="joinDate" column="joinDate"/>  
+  </resultMap>
+  
+  <insert id="insertMember">
+  	insert into member
+  	values (#{id},#{password},#{name},#{email},#{joinDate})
+  </insert>
+  
+  <update id="updateMember">
+  	update  member set name=#{name}, email=#{email} where id=#{id}
+  </update>
+  
+  <delete id="deleteMember">
+  	delete member where id=#{id}
+  </delete>
+  
+  <select id="getMember" resultMap="memResult">
+  	select * from member where id=#{id}
+  </select>
+  
+  <select id="getMemberList" resultMap="memResult">
+  	select * from member
+  </select>
+</mapper>
